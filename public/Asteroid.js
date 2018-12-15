@@ -1,7 +1,7 @@
 class Asteroid {
-    constructor(diameter, distance, profit, displaySize=50) {
+    constructor(name, diameter, profit, displaySize=50) {
+        this.name = name;
         this.diameter = diameter; // Meters
-        this.distance = distance; // Meters
         this.profit = profit; // USD
 
         this.displaySize = displaySize
@@ -50,9 +50,16 @@ class Asteroid {
         //     this.popup_full(x+100,y+100);
         // }
 
-        fill(0);
+        fill(80);
         noStroke();
         ellipse(x, y, this.displaySize, this.displaySize);
+        textAlign(CENTER, TOP);
+        textSize(30);
+        fill(255);
+        noStroke();
+        text(this.name, x, y - this.displaySize - 15);
+        textSize(20);
+        text("$" + this.profit, x, y + this.displaySize - 15);
     }
 
     popup_small(x, y) {

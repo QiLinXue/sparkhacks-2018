@@ -10,18 +10,20 @@ var sideClickClosed = false;
 var sideBarSize = 300;
 var titleBarSize = 60;
 
+// Sroll
+var pos = 0;
+
+
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
 
     // Create asteroids
     for (var i = 0; i < 10; i++) {
-        asteroids.push(new Asteroid(random(10, 100), random(1000, 10000), random(1000000, 100000000)));
+        asteroids.push(new Asteroid("eggs", round(random(1000, 10000)), round(random(1000000, 100000000))));
     }
 
     // Create positions of asteroids
-    for (var i = 0; i < asteroids.length; i++) {
-        positions.push([(width/(asteroids.length+1) * (i+1)), height/2]);
-    }
+    reposition();
 
     // Create stars
     for (var i = 0; i < 50; i++) {
@@ -98,6 +100,7 @@ function draw(){
             reposition();
         }
     }
+
 }
 
 function mousePressed() {
@@ -123,10 +126,16 @@ function mousePressed() {
     }
 }
 
+function mouseWheel(event) {
+    pos += event.delta;
+    posRev = height - 10 - pos;
+  }
+
 function reposition() {
     // Reposition asteroids
     for (var i = 0; i < asteroids.length; i++) {
-        positions[i] = [(width/(asteroids.length+1) * (i+1)), height/2];
+        positions[i] = [(width/(asteroids.length) * (i+0.5)), height/2];
     }
 }
+
 
