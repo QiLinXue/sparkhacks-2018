@@ -25,9 +25,9 @@ class Asteroid {
                     }
                     this.mode = 2;
                 }
-                else if(this.mode == 2 && !this.mouseDown){
-                    this.mode = 0;
-                }
+                // else if(this.mode == 2 && !this.mouseDown){
+                //     this.mode = 0;
+                // }
                 
                 this.mouseDown = true;
             }
@@ -42,6 +42,12 @@ class Asteroid {
         if(!mouseIsPressed){
             this.mouseDown = false;
         }
+        if(mouseX<100 || mouseX>width-100 || mouseY<100 || mouseY > height-100){
+            if(mouseIsPressed && this.mode == 2 && !this.mouseDown){
+                this.mode = 0;
+            }
+        }
+        
 
 
         if(this.mode == 1){
@@ -76,30 +82,69 @@ class Asteroid {
 
     popup_full(){
         noStroke();
-        fill(255,255,255,180);
+        fill(255,255,255);
         rect(100,100,width-200,height-200);
 
         fill(0);
         textAlign(CENTER,TOP);
-        
         textSize(40);
         text("Asteroid Name",100,100,width-200,60);
 
-        textAlign(CENTER,TOP);
+        // textAlign(CENTER,TOP);
+        // textSize(20);
+        rect(150,150,width/3-100,height-400);
+        fill(255);
         textSize(20);
-        text("162173 Ryugu, provisional designation 1999 JU3, is a near-Earth object and a potentially hazardous asteroid of the Apollo group. It measures approximately 1 kilometer (0.6 mi) in diameter and is a dark object of the rare spectral type Cg, with qualities of both a C-type asteroid and a G-type asteroid. In June 2018, a spacecraft arrived at the asteroid, Hayabusa2.",150,200,width-300,400);
-        text("Diameter: 300 km      Distance: 100000 km      Risk Factor: 45%      Profit: $9000",150,325,width-300,150);
-
-        fill(138,175,178);
-        rect(width/2-150,500,300,100);
+        // textAlign();
+        text(" Diameter: 300 km \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Est. Value: $90 B \n\n Est. Profit: $30 B \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
         fill(0);
-        textAlign(CENTER,CENTER);
-        textSize(60);
-        text("invest",width/2-150,500,300,100);
+        rect(width/3+51,150,width/3-100,height-400);
 
-        if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 500 && mouseY < 600){
-            console.log("hello");
-        }
+        rect(2*width/3-48,150,width/3-100,height-400);
+
+        var c1 = 80;
+        var c2 = 70;
+        var c3 = 60;
+        var c4 = 30;
+
+        // Bars
+        fill(100);
+        rect(width/3+100,195,c1*3,50);
+        rect(width/3+100,285,c2*3,50);
+        rect(width/3+100,375,c3*3,50);
+        rect(width/3+100,465,c4*3,50);
+        ellipse(width/3+100+c1*3,220,50,50);
+        ellipse(width/3+100+c2*3,310,50,50);
+        ellipse(width/3+100+c3*3,400,50,50);
+        ellipse(width/3+100+c4*3,490,50,50);
+        // 
+        fill(255);
+        textSize(18);
+        textAlign(LEFT,CENTER);
+        text("Deep Space Industries",width/3+80,155,300,50);
+        text("Planetary",width/3+80,245,300,50);
+        text("Moon Express",width/3+80,335,300,50);
+        text("Kleos Space",width/3+80,425,300,50);
+
+        // Company Logos
+        fill(200,0,100);
+        ellipse(width/3+100,220,50,50);
+        ellipse(width/3+100,310,50,50);
+        ellipse(width/3+100,400,50,50);
+        ellipse(width/3+100,490,50,50);
+
+        // text(" Diameter: 300 km \n Distance: 100000 km \n Risk Factor: 45% \n Profit: $9000",150,325,width-300,150);
+
+        // fill(138,175,178);
+        // rect(width/2-150,500,300,100);
+        // fill(0);
+        // textAlign(CENTER,CENTER);
+        // textSize(60);
+        // text("invest",width/2-150,500,300,100);
+
+        // if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 500 && mouseY < 600){
+        //     console.log("hello");
+        // }
     }
 
 

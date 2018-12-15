@@ -54,7 +54,6 @@ function draw(){
         asteroid = asteroids[i];
         if(asteroid.mode == 2){
             asteroid.popup_full();
-            asteroid.display(positions[i][0], positions[i][1], 50);
         }
     }
 
