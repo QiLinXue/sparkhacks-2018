@@ -107,3 +107,4 @@ function reposition() {
         positions[i] = [(width/(asteroids.length+1) * (i+1)), height/2];
     }
 }
+
