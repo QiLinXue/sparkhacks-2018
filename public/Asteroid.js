@@ -46,9 +46,9 @@ class Asteroid {
         if(this.mode == 1){
             this.popup_small(x,y);
         }
-        else if(this.mode == 2){
-            this.popup_full(x+100,y+100);
-        }
+        // else if(this.mode == 2){
+        //     this.popup_full(x+100,y+100);
+        // }
 
         fill(0);
         noStroke();
@@ -81,8 +81,17 @@ class Asteroid {
         textSize(20);
         text("162173 Ryugu, provisional designation 1999 JU3, is a near-Earth object and a potentially hazardous asteroid of the Apollo group. It measures approximately 1 kilometer (0.6 mi) in diameter and is a dark object of the rare spectral type Cg, with qualities of both a C-type asteroid and a G-type asteroid. In June 2018, a spacecraft arrived at the asteroid, Hayabusa2.",150,200,width-300,400);
         text("Diameter: 300 km      Distance: 100000 km      Risk Factor: 45%      Profit: $9000",150,325,width-300,150);
-        // fill(0);
-        // rect(150,325,width-300,150);
+
+        fill(138,175,178);
+        rect(width/2-150,500,300,100);
+        fill(0);
+        textAlign(CENTER,CENTER);
+        textSize(60);
+        text("invest",width/2-150,500,300,100);
+
+        if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 500 && mouseY < 600){
+            console.log("hello");
+        }
     }
 
 

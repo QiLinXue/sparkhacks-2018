@@ -35,6 +35,15 @@ function draw(){
         asteroid.display(positions[i][0], positions[i][1], 50);
     }
 
+    // Draw Description Boxes
+    for (var i = 0; i < asteroids.length; i++) {
+        asteroid = asteroids[i];
+        if(asteroid.mode == 2){
+            asteroid.popup_full();
+            asteroid.display(positions[i][0], positions[i][1], 50);
+        }
+    }
+
     // Title banner
     fill(20,48,49);
     noStroke();
