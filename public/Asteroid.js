@@ -54,23 +54,23 @@ class Asteroid {
         noStroke();
         ellipse(x, y, this.displaySize, this.displaySize);
         textAlign(CENTER, TOP);
-        textSize(30);
+        textSize(25);
         fill(255);
         noStroke();
-        text(this.name, x, y - this.displaySize - 15);
-        textSize(20);
-        text("$" + this.profit, x, y + this.displaySize - 15);
+        text(this.name, x, y - this.displaySize - 20);
+        textSize(15);
+        text("$" + this.profit, x, y + this.displaySize - 10);
     }
 
     popup_small(x, y) {
         noStroke();
         fill(255);
         textAlign(CENTER, TOP);
-        textSize(11);
+        textSize(20);
         var subtitle = "Size: " + this.diameter.toPrecision(2) + " m";
         // rect(x - this.displaySize, y - this.displaySize, 2*this.displaySize,this.displaySize);
         // fill(0);
-        text(subtitle, x - this.displaySize, y - this.displaySize, 2*this.displaySize,this.displaySize);
+        text(subtitle, x, y + this.displaySize + 20);
     }
 
     popup_full(){
