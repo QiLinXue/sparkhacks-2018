@@ -40,9 +40,6 @@ class Asteroid {
                     this.mode = 2;
                     popup = true;
                 }
-                // else if(this.mode == 2 && !this.mouseDown){
-                //     this.mode = 0;
-                // }
                 
                 this.mouseDown = true;
             }
@@ -51,8 +48,10 @@ class Asteroid {
                 this.mode = 1;
             }
         }
-        else if(!mouseIsPressed && this.mode == 1){
-            this.mode = 0;
+        else{
+            if(!mouseIsPressed && this.mode == 1){
+                this.mode = 0;
+            }
         }
         if(!mouseIsPressed){
             this.mouseDown = false;
@@ -163,18 +162,24 @@ class Asteroid {
 
         // text(" Diameter: 300 km \n Distance: 100000 km \n Risk Factor: 45% \n Profit: $9000",150,325,width-300,150);
 
-        fill(138,175,178);
+        
+        if(mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 560 && mouseY < 660){
+            console.log("hello");
+            cursor(HAND);
+            fill(138,175,218);
+        }
+        else{
+            cursor(ARROW);
+            fill(138,175,178);
+        }
         rect(width/2-150,560,300,100);
-        fill(0);
+        
         textAlign(CENTER,CENTER);
+        fill(0);
         textSize(30);
         text("Trade ("+this.sharePrice+"¢/share)",width/2-150,560,300,100);
-
-        if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 560 && mouseY < 600){
-            console.log("hello");
-        }
     }
-
+    
 
     contains(x, y) {
         if (dist(x, y, mouseX, mouseY) <= this.displaySize /2) {
