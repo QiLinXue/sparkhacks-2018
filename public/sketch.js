@@ -24,7 +24,7 @@ function setup(){
     // Create asteroids
     for (var i = 0; i < 10; i++) {
         // asteroids.push(new Asteroid("eggs " + i, round(random(1000, 10000))/100, round(random(1000000,100000000))/100, round(random(1, 100))/100));
-        var temp = new Asteroid(asteroid_list[i][0],asteroid_list[i][1],asteroid_list[i][2],asteroid_list[i][3],asteroid_list[i][4],asteroid_list[i][5],asteroid_list[i][6],asteroid_list[i][7]);
+        var temp = new Asteroid(asteroid_list[i][0],asteroid_list[i][1],asteroid_list[i][2],asteroid_list[i][3],asteroid_list[i][4],asteroid_list[i][5],asteroid_list[i][6],asteroid_list[i][7],pictures[i]);
         asteroids.push(temp);
     }
 

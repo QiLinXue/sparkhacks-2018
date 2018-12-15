@@ -11,3 +11,16 @@ var asteroid_list = [
                         ["1992 TC",84.01,16.78,2037,40,"nickel, iron, cobalt",[0.7,0.5,0.6,0.4],0.37],
                         ["2001 SG10",3.05,0.54448,2022,6,"nickel, iron, cobalt",[0.9,0.6,0.3,0.5],0.28],
                     ]
+
+var pictures = [
+    "pictures/Ryugu.PNG",
+    "pictures/ML.PNG",
+    "pictures/Nereus.PNG",
+    "pictures/Bennu.PNG",
+    "pictures/Didymos.PNG",
+    "pictures/UW158.PNG",
+    "pictures/Anteros.PNG",
+    "pictures/CC21.PNG",
+    "pictures/TC.PNG",
+    "pictures/SG10.PNG",
+]

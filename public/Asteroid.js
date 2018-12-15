@@ -1,14 +1,16 @@
 class Asteroid {
-    constructor(name, value, profit, approach, period, minerals, risks, ac, displaySize=50) {
+    constructor(name, value, profit, approach, period, minerals, risks, ac, picture, displaySize=50) {
         // Atributes
         this.name = name;
         this.value = value;
         this.profit = profit;
         this.approach = approach;
+        this.period = period;
         this.minerals = minerals;
         this.risks = risks;
         this.ac = ac;
         this.displaySize = displaySize
+        this.picture = loadImage(picture);
 
         // Utilities
         this.mode = 0;
@@ -95,6 +97,7 @@ class Asteroid {
     }
 
     popup_full(){
+        // Main Popup
         noStroke();
         fill(255,255,255);
         rect(100,100,width-200,height-200);
@@ -102,25 +105,27 @@ class Asteroid {
         fill(0);
         textAlign(CENTER);
         textSize(40);
-        text("Asteroid Name", width/2, 105);
+        text(this.name, width/2, 105);
 
-        // textAlign(CENTER,TOP);
-        // textSize(20);
-        rect(150,150,width/3-100,height-400);
+        // Left Panel
+        // rect(150,150,width/3-100,height-400);
         fill(255);
-        textSize(20);
-        // textAlign();
-        text(" \n\n Extractable Value: $90 B \n\n Est. Profit: $30 B \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
+        textSize(30);
         fill(0);
-        rect(width/3+51,150,width/3-100,height-400);
+        text(this.name + " Info",150,170,width/3-100,height-300);
+        textSize(20);
+        text(" \n\n Extractable Value: "+this.value+" B \n\n Est. Profit: "+this.profit+" B \n\n Next Approach: "+this.approach+" \n\n Period: "+this.period+" years \n\n Minerals: \n"+this.minerals,150,200,width/3-100,height-300);
 
-        rect(2*width/3-48,150,width/3-100,height-400);
+        // Center Panel
+        fill(0);
+        // rect(width/3+51,150,width/3-100,height-400);
 
+        
         var c1 = this.risks[0]*100;
         var c2 = this.risks[1]*100;
         var c3 = this.risks[2]*100;
         var c4 = this.risks[3]*100;
-
+        
         // Bars
         fill(100);
         rect(width/3+100,195,c1*3,50);
@@ -131,34 +136,43 @@ class Asteroid {
         ellipse(width/3+100+c2*3,310,50,50);
         ellipse(width/3+100+c3*3,400,50,50);
         ellipse(width/3+100+c4*3,490,50,50);
-        // 
-        fill(255);
+        
+        // Text
+        fill(0);
         textSize(18);
         textAlign(LEFT,CENTER);
-        text("Deep Space Industries",width/3+80,155,300,50);
-        text("Planetary",width/3+80,245,300,50);
-        text("Moon Express",width/3+80,335,300,50);
-        text("Kleos Space",width/3+80,425,300,50);
-
+        text("Deep Space Industries - "+c1/100+"% chance",width/3+80,155,320,50);
+        text("Planetary - "+c2/100+"% chance",width/3+80,245,300,50);
+        text("Moon Express - "+c3/100+"% chance",width/3+80,335,300,50);
+        text("Kleos Space - "+c4/100+"% chance",width/3+80,425,300,50);
+        
         // Company Logos
-        fill(200,0,100);
+        fill(200,0,50);
         ellipse(width/3+100,220,50,50);
+        fill(200,0,80);
         ellipse(width/3+100,310,50,50);
+        fill(200,0,110);
         ellipse(width/3+100,400,50,50);
+        fill(200,0,140);
         ellipse(width/3+100,490,50,50);
+        
+        // Right Panel
+        fill(0);
+        // rect(2*width/3-48,150,width/3-100,height-400);
+        image(this.picture,2*width/3-48,200,width/4,width/4);
 
         // text(" Diameter: 300 km \n Distance: 100000 km \n Risk Factor: 45% \n Profit: $9000",150,325,width-300,150);
 
-        // fill(138,175,178);
-        // rect(width/2-150,500,300,100);
-        // fill(0);
-        // textAlign(CENTER,CENTER);
-        // textSize(60);
-        // text("invest",width/2-150,500,300,100);
+        fill(138,175,178);
+        rect(width/2-150,560,300,100);
+        fill(0);
+        textAlign(CENTER,CENTER);
+        textSize(30);
+        text("Trade ("+this.sharePrice+"¢/share)",width/2-150,560,300,100);
 
-        // if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 500 && mouseY < 600){
-        //     console.log("hello");
-        // }
+        if(mouseIsPressed && mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 560 && mouseY < 600){
+            console.log("hello");
+        }
     }
 
 
