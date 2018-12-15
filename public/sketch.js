@@ -9,6 +9,7 @@ var sideExpanded = false;
 var sideClickClosed = false;
 var sideBarSize = 300;
 var titleBarSize = 60;
+var spacing = 200;
 
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
@@ -20,7 +21,7 @@ function setup(){
 
     // Create positions of asteroids
     for (var i = 0; i < asteroids.length; i++) {
-        positions[i] = [200 * (i + 1), height/2];
+        positions[i] = [spacing * (i + 1), height/2];
     }
 
     // Create stars
@@ -100,11 +101,39 @@ function draw(){
     }
 
     // Scroll arrows
-    line(60, height/2 + 30, 40, height/2);
-    line(60, height/2 - 30, 40, height/2);
+    if (mouseX <= 80) {
+        noStroke();
+        fill(255, 255, 255, 20);
+        rect(0, 0, 80, height);
 
-    line(width - 60, height/2 + 30, width - 40, height/2);
-    line(width - 60, height/2 - 30, width - 40, height/2);
+        for (var i = 0; i < asteroids.length; i++) {
+            positions[i][0] += round((80 - mouseX)/4*1.5);
+            if (positions[i][0] < 0) {
+                positions[i][0] += asteroids.length * spacing + 200;
+            }
+            positions[i][0] %= asteroids.length * spacing + 200;
+        }
+    }
+    if (mouseX >= width - 80 && !sideExpanded && !sideClickClosed) {
+        noStroke();
+        fill(255, 255, 255, 20);
+        rect(width - 80, 0, 80, height);
+
+        for (var i = 0; i < asteroids.length; i++) {
+            positions[i][0] -= round((80 - width + mouseX)/4*1.5);
+            if (positions[i][0] < 0) {
+                positions[i][0] += asteroids.length * spacing + 200;
+            }
+            positions[i][0] %= asteroids.length * spacing + 200;
+        }
+    }
+
+    stroke(255);
+    line(50, height/2 + 30, 30, height/2);
+    line(50, height/2 - 30, 30, height/2);
+
+    line(width - 50, height/2 + 30, width - 30, height/2);
+    line(width - 50, height/2 - 30, width - 30, height/2);
 }
 
 function mousePressed() {
