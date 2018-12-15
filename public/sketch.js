@@ -10,6 +10,7 @@ var sideClickClosed = false;
 var sideBarSize = 300;
 var titleBarSize = 60;
 var spacing = 200;
+var sortExpanded = false;
 
 // Control animation and controls
 var popup = false;
@@ -49,6 +50,8 @@ function setup(){
 function draw(){
     imageMode(CORNER);
     image(bg, 0, 0, width, height);
+
+    cursor(ARROW);
 
     // Draw stars
     for (var i = 0; i < stars.length; i++) {
@@ -93,10 +96,28 @@ function draw(){
     strokeWeight(2);
     line(width - 170, 42, width - 95, 42)
 
+    // Sort by arrow
     stroke(255);
     textSize(25);
     strokeWeight(0.1);
     text("Sort by", 120, 30);
+
+    noStroke();
+    fill(255);
+    triangle(210, 25, 230, 25, 220, 35);
+
+    if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
+        cursor(HAND);
+    }
+    if (!(mouseX >= 115 && mouseX <= 235 && mouseY <= titleBarSize + 300) && sortExpanded) {
+        sortExpanded = false;
+    }
+    if (sortExpanded) {
+        noStroke()
+        fill(200);
+        rect(115, titleBarSize, 120, 300)
+        print("Eqwe");
+    }
 
     // Scroll arrows
     if (mouseX <= 80 && !popup) {
@@ -210,6 +231,11 @@ function mousePressed() {
             sideExpanded = false;
             // reposition();
         }
+    }
+
+    // Sort
+    if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
+        sortExpanded = !sortExpanded;
     }
 }
 
