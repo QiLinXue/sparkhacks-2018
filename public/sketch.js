@@ -41,7 +41,7 @@ function setup(){
     // Load images
     ast = loadImage('ast.png');
     bg = loadImage('blue.jpg');
-    
+
     print(asteroids);
     print(positions);
 }
@@ -72,14 +72,16 @@ function draw(){
     }
 
     // Title banner
-    fill(20,48,49);
     noStroke();
+    fill(20,48,49);
     rect(0, 0, width, 60);
+    fill(100, 100, 100, 150);
+    rect(0, titleBarSize - 5, width, 5);
 
     textAlign(CENTER, CENTER);
-    textSize(50);
+    textSize(45);
     fill(255);
-    text("A X I", width/2, 35);
+    text("A X I", width/2, 32);
 
     textAlign(RIGHT);
     textSize(20);
@@ -90,6 +92,11 @@ function draw(){
     stroke(255);
     strokeWeight(2);
     line(width - 170, 42, width - 95, 42)
+
+    stroke(255);
+    textSize(25);
+    strokeWeight(0.1);
+    text("Sort by", 120, 30);
 
     // Scroll arrows
     if (mouseX <= 80 && !popup) {
