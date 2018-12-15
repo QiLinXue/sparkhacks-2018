@@ -88,9 +88,9 @@ class Asteroid {
         rect(100,100,width-200,height-200);
 
         fill(0);
-        textAlign(CENTER,TOP);
+        textAlign(CENTER);
         textSize(40);
-        text("Asteroid Name",100,100,width-200,60);
+        text("Asteroid Name", width/2, 105);
 
         // textAlign(CENTER,TOP);
         // textSize(20);

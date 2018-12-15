@@ -16,13 +16,14 @@ var popup = false;
 
 // Images
 var ast;
+var bg;
 
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
 
     // Create asteroids
     for (var i = 0; i < 10; i++) {
-        asteroids.push(new Asteroid("eggs" + i, round(random(1000, 10000))/100, round(random(1000000,100000000))/100, round(random(1, 100))/100));
+        asteroids.push(new Asteroid("eggs " + i, round(random(1000, 10000))/100, round(random(1000000,100000000))/100, round(random(1, 100))/100));
     }
 
     // Create positions of asteroids
@@ -31,19 +32,21 @@ function setup(){
     }
 
     // Create stars
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 200; i++) {
         stars.push([floor(random(0, width)), floor(random(titleBarSize, height)), floor(random(1, 4))]);
     }
 
     // Load images
     ast = loadImage('ast.png');
+    bg = loadImage('blue.jpg');
     
     print(asteroids);
     print(positions);
 }
 
 function draw(){
-    background(7, 0, 20);
+    imageMode(CORNER);
+    image(bg, 0, 0, width, height);
 
     // Draw stars
     for (var i = 0; i < stars.length; i++) {
