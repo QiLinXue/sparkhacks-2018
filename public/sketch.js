@@ -45,6 +45,8 @@ function setup(){
 
     print(asteroids);
     print(positions);
+
+    sort_price();
 }
 
 function draw(){

@@ -165,11 +165,9 @@ class Asteroid {
         // rect(2*width/3-48,150,width/3-100,height-400);
         image(this.picture,2*width/3-48,200,width/4,width/4);
 
-        // text(" Diameter: 300 km \n Distance: 100000 km \n Risk Factor: 45% \n Profit: $9000",150,325,width-300,150);
 
-        
+        // Buy
         if(mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 560 && mouseY < 660){
-            cursor(HAND);
             fill(138,175,218);
             if(mouseIsPressed && !this.mouseDown){
                 fill(255,175,250);
@@ -182,15 +180,34 @@ class Asteroid {
             }
         }
         else{
-            cursor(ARROW);
             fill(138,175,178);
         }
         rect(width/2-150,560,300,100);
-        
+
+        // Sell
+        if(mouseX > width/2-150-350 && mouseX < width/2-150-350+300 && mouseY > 560 && mouseY < 660){
+            // cursor(HAND);
+            fill(138,175,218);
+            if(mouseIsPressed && !this.mouseDown){
+                fill(255,175,250);
+                this.mouseDown = true;
+                this.sharePrice -= 0.0005;
+                // print(typeof this.sharePrice)
+            }
+            else if(!mouseIsPressed){
+                this.mouseDown = false;
+            }
+        }
+        else{
+            fill(138,175,178);
+        }
+        rect(width/2-150-350,560,300,100);
+
         textAlign(CENTER,CENTER);
         fill(0);
         textSize(30);
-        text("Trade ("+this.sharePrice.toPrecision(3)+"¢/share)",width/2-150,560,300,100);
+        text("Sell ("+this.sharePrice.toPrecision(3)+"¢/share)",width/2-150-350,560,300,100);
+        text("Buy ("+this.sharePrice.toPrecision(3)+"¢/share)",width/2-150,560,300,100);
     }
     
 
