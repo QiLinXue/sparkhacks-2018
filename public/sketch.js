@@ -10,10 +10,6 @@ var sideClickClosed = false;
 var sideBarSize = 300;
 var titleBarSize = 60;
 
-// Sroll
-var pos = 0;
-
-
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
 
@@ -103,6 +99,12 @@ function draw(){
         }
     }
 
+    // Scroll arrows
+    line(60, height/2 + 30, 40, height/2);
+    line(60, height/2 - 30, 40, height/2);
+
+    line(width - 60, height/2 + 30, width - 40, height/2);
+    line(width - 60, height/2 - 30, width - 40, height/2);
 }
 
 function mousePressed() {
@@ -127,15 +129,6 @@ function mousePressed() {
         }
     }
 }
-
-function mouseWheel(event) {
-    print(event.delta);
-
-    for (var i = 0; i < asteroids.length; i++) {
-        positions[i][0] = (positions[i][0] + event.delta) % 2000;
-    }
-  }
-  
 
 function reposition() {
     // Reposition asteroids
