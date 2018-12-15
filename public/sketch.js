@@ -1,11 +1,13 @@
 // Global variables
 var mode = 0;
 var asteroids = [];
-var positions = [[]];
+var positions = [];
 
 // Interface
 var sideExpanded = false;
 var sideClickClosed = false;
+var sideBarSize = 300;
+var titleBarSize = 60;
 
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
@@ -17,7 +19,7 @@ function setup(){
 
     // Create positions of asteroids
     for (var i = 0; i < asteroids.length; i++) {
-        positions.push([(width - 80)/asteroids.length * (i+1) + 40, height/2]);
+        positions.push([(width/(asteroids.length+1) * (i+1)), height/2]);
     }
     
     print(asteroids);
@@ -55,6 +57,10 @@ function draw(){
         if (mouseX >= width-65 && mouseY <= 60) {
             if (!sideClickClosed) {
                 sideExpanded = true;
+                // Reposition asteroids
+                for (var i = 0; i < asteroids.length; i++) {
+                    positions[i] = [((width-sideBarSize)/(asteroids.length+1) * (i+1)), height/2];
+                }
             }
         } else {
             sideClickClosed = false;
@@ -63,20 +69,41 @@ function draw(){
         strokeWeight();
         stroke(20, 48, 49);
         fill(255);
-        rect(width - 300, 60, 300, height-60);
+        rect(width - sideBarSize, titleBarSize, sideBarSize, height-titleBarSize);
 
-        if (mouseX < width - 300 ) {
+        if (mouseX < width - sideBarSize ) {
             sideExpanded = false;
+            reposition();
         }
     }
 }
 
-// function mousePressed() {
-//     // Side bar
-//     if (mouseX >= width-65 && mouseY <= 60) {
-//         if (sideExpanded) {
-//         sideClickClosed = true;
-//         }
-//     sideExpanded = !sideExpanded
-//     }
-// }
+function mousePressed() {
+    // Side bar
+    if (mouseX >= width-65 && mouseY <= titleBarSize) {
+        if (sideExpanded) {
+            sideClickClosed = true;
+            // Reposition asteroids
+            for (var i = 0; i < asteroids.length; i++) {
+                positions[i] = [((width-sideBarSize)/(asteroids.length+1) * (i+1)), height/2];
+            }
+        }
+        if (!sideExpanded) {
+            sideExpanded = true;
+            // Reposition asteroids
+            for (var i = 0; i < asteroids.length; i++) {
+                positions[i] = [((width-sideBarSize)/(asteroids.length+1) * (i+1)), height/2];
+            }
+        } else {
+            sideExpanded = false;
+            reposition();
+        }
+    }
+}
+
+function reposition() {
+    // Reposition asteroids
+    for (var i = 0; i < asteroids.length; i++) {
+        positions[i] = [(width/(asteroids.length+1) * (i+1)), height/2];
+    }
+}
