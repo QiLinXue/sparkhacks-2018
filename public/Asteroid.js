@@ -1,10 +1,13 @@
 class Asteroid {
-    constructor(name, diameter, profit, sharePrice, displaySize=50) {
+    constructor(name, value, profit, approach, period, minerals, risks, sharePrice, displaySize=50) {
         this.name = name;
-        this.diameter = diameter; // Meters
-        this.profit = profit; // USD
-        this.sharePrice = sharePrice;
+        this.value = value;
+        this.profit = profit;
+        this.approach = approach;
+        this.minerals = minerals;
+        this.risks = risks;
 
+        this.sharePrice = sharePrice;
         this.displaySize = displaySize
 
         this.mode = 0;
@@ -76,7 +79,7 @@ class Asteroid {
         fill(255);
         textAlign(CENTER, TOP);
         textSize(20);
-        var subtitle = "Size: " + this.diameter.toPrecision(2) + " m";
+        var subtitle = "Profit: $" + this.profit + " b";
         // rect(x - this.displaySize, y - this.displaySize, 2*this.displaySize,this.displaySize);
         // fill(0);
         text(subtitle, x, y + this.displaySize + 20);
@@ -98,16 +101,16 @@ class Asteroid {
         fill(255);
         textSize(20);
         // textAlign();
-        text(" \n\n Est. Value: $90 B \n\n Est. Profit: $30 B \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
+        text(" \n\n Extractable Value: $90 B \n\n Est. Profit: $30 B \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
         fill(0);
         rect(width/3+51,150,width/3-100,height-400);
 
         rect(2*width/3-48,150,width/3-100,height-400);
 
-        var c1 = 80;
-        var c2 = 70;
-        var c3 = 60;
-        var c4 = 30;
+        var c1 = this.risks[0]*100;
+        var c2 = this.risks[1]*100;
+        var c3 = this.risks[2]*100;
+        var c4 = this.risks[3]*100;
 
         // Bars
         fill(100);
