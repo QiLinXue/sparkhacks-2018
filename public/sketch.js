@@ -10,6 +10,7 @@ var sideClickClosed = false;
 var sideBarSize = 300;
 var titleBarSize = 60;
 var spacing = 200;
+var sortExpanded = false;
 
 // Control animation and controls
 var popup = false;
@@ -50,6 +51,8 @@ function draw(){
     imageMode(CORNER);
     image(bg, 0, 0, width, height);
 
+    cursor(ARROW);
+
     // Draw stars
     for (var i = 0; i < stars.length; i++) {
         noStroke();
@@ -61,6 +64,12 @@ function draw(){
     for (var i = 0; i < asteroids.length; i++) {
         asteroid = asteroids[i];
         asteroid.display(positions[i][0], positions[i][1], 50);
+
+        // Ranking number
+        textAlign(CENTER);
+        textSize(30);
+        fill(255);
+        text(i + 1 + ".", positions[i][0], positions[i][1] - 150);
     }
 
     // Draw Description Boxes
@@ -93,10 +102,53 @@ function draw(){
     strokeWeight(2);
     line(width - 170, 42, width - 95, 42)
 
+    // Sort by arrow
     stroke(255);
     textSize(25);
     strokeWeight(0.1);
     text("Sort by", 120, 30);
+
+    noStroke();
+    fill(255);
+    triangle(210, 25, 230, 25, 220, 35);
+
+    if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
+        cursor(HAND);
+    }
+    if (!(mouseX >= 115 && mouseX <= 235 && mouseY <= titleBarSize + 200) && sortExpanded) {
+        sortExpanded = false;
+    }
+    if (sortExpanded) {
+        strokeWeight(2);
+        stroke(80);
+        fill(200);
+        rect(115, titleBarSize, 120, 200);
+        
+        // Labels
+        textAlign(LEFT, TOP);
+        textSize(20);
+        fill(0);
+        textLeading(40);
+        strokeWeight(0.5);
+        text("Name\nValue\nProfit\nApproach\nShare Price", 120, titleBarSize + 10);
+
+        for (var i = 0; i < 5; i++) {
+            strokeWeight(2);
+            stroke(100);
+            line(115, titleBarSize + 40*i, 235, titleBarSize + 40*i);
+        }
+        for (var i = 0; i < 5; i++) {
+            if (mouseX >= 115 && mouseX <= 235 && mouseY >= titleBarSize + 40*i && mouseY < titleBarSize + 40*i + 40) {
+                noStroke()
+                fill(0, 0, 0, 60);
+                rect(115, titleBarSize + 40*i, 120, 40);
+                cursor(HAND);
+            }
+        }
+    }
+    noStroke();
+    fill(100, 100, 100, 150);
+    rect(0, titleBarSize - 5, width, 5);
 
     // Scroll arrows
     if (mouseX <= 80 && !popup) {
@@ -211,6 +263,23 @@ function mousePressed() {
             // reposition();
         }
     }
+
+    // Sort
+    if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
+        sortExpanded = !sortExpanded;
+    }
+
+    if (sortExpanded) {
+        for (var i = 0; i < 5; i++) {
+            if (mouseX >= 115 && mouseX <= 235 && mouseY >= titleBarSize + 40*i && mouseY < titleBarSize + 40*i + 40) {
+                if(i == 0){sort_name();}
+                if(i == 1){sort_value();}
+                if(i == 2){sort_profit();}
+                if(i == 3){sort_approach();}
+                if(i == 4){sort_profit();}
+            }
+        }
+    }
 }
 
 function reposition() {
@@ -220,4 +289,69 @@ function reposition() {
     }
 }
 
+function sort_name(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].name > asteroids[j+1].name){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
 
+function sort_value(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].value > asteroids[j+1].value){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
+
+function sort_profit(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].profit > asteroids[j+1].profit){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
+
+function sort_approach(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].approach > asteroids[j+1].approach){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+                console.log("??");
+            }
+        }
+    }
+}
+
+function sort_price(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].sharePrice > asteroids[j+1].sharePrice){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+                console.log("??");
+            }
+        }
+    }
+}
