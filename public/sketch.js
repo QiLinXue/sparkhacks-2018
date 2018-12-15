@@ -2,6 +2,7 @@
 var mode = 0;
 var asteroids = [];
 var positions = [];
+var stars = [];
 
 // Interface
 var sideExpanded = false;
@@ -21,14 +22,26 @@ function setup(){
     for (var i = 0; i < asteroids.length; i++) {
         positions.push([(width/(asteroids.length+1) * (i+1)), height/2]);
     }
+
+    // Create stars
+    for (var i = 0; i < 50; i++) {
+        stars.push([floor(random(0, width)), floor(random(titleBarSize, height)), floor(random(1, 4))]);
+    }
     
     print(asteroids);
     print(positions);
 }
 
 function draw(){
-    background(50);
+    background(7, 0, 20);
 
+    // Draw stars
+    for (var i = 0; i < stars.length; i++) {
+        noStroke();
+        fill(255);
+        ellipse(stars[i][0], stars[i][1], stars[i][2], stars[i][2]);
+    }
+    
     // Draw asteroids
     for (var i = 0; i < asteroids.length; i++) {
         asteroid = asteroids[i];
