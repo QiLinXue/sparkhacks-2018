@@ -51,20 +51,23 @@ class Asteroid {
         }
 
         fill(0);
-        strokeWeight(4);
+        noStroke();
         ellipse(x, y, this.displaySize, this.displaySize);
     }
 
     popup_small(x, y) {
+        noStroke();
         fill(255);
-        textAlign(CENTER);
-
+        textAlign(CENTER, TOP);
+        textSize(11);
         var subtitle = "Size: " + this.diameter.toPrecision(2) + " m";
-
+        // rect(x - this.displaySize, y - this.displaySize, 2*this.displaySize,this.displaySize);
+        // fill(0);
         text(subtitle, x - this.displaySize, y - this.displaySize, 2*this.displaySize,this.displaySize);
     }
 
     popup_full(){
+        noStroke();
         fill(255,255,255,50);
         rect(100,100,width-200,height-200);
     }
