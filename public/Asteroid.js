@@ -96,7 +96,7 @@ class Asteroid {
         fill(255);
         textSize(20);
         // textAlign();
-        text(" Diameter: 300 km \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Est. Value: $90 B \n\n Est. Profit: $30 B \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
+        text(" \n\n Est. Value: $90 B \n\n Est. Profit: $30 B \n\n Next Approach: 2 years \n\n Period: 10 years \n\n Minerals: \ncopper, sulfur, crystal meth",150,200,width/3-100,height-300);
         fill(0);
         rect(width/3+51,150,width/3-100,height-400);
 
