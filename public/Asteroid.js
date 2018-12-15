@@ -113,7 +113,7 @@ class Asteroid {
         fill(0);
         text(this.name + " Info",150,170,width/3-100,height-300);
         textSize(20);
-        text(" \n\n Extractable Value: "+this.value+" B \n\n Est. Profit: "+this.profit+" B \n\n Next Approach: "+this.approach+" \n\n Period: "+this.period+" years \n\n Minerals: \n"+this.minerals,150,200,width/3-100,height-300);
+        text(" \n\n Extractable Value: $"+this.value+" B \n\n Est. Profit: $"+this.profit+" B \n\n Next Approach: "+this.approach+" \n\n Period: "+this.period+" years \n\n Minerals: \n"+this.minerals,150,200,width/3-100,height-300);
 
         // Center Panel
         fill(0);
