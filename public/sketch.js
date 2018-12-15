@@ -18,6 +18,7 @@ var popup = false;
 // Images
 var ast;
 var bg;
+var logo;
 
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
@@ -42,6 +43,7 @@ function setup(){
     // Load images
     ast = loadImage('ast.png');
     bg = loadImage('blue.jpg');
+    logo = loadImage('logo.png');
 
     print(asteroids);
     print(positions);
@@ -103,6 +105,9 @@ function draw(){
     stroke(255);
     strokeWeight(2);
     line(width - 170, 42, width - 95, 42)
+
+    // Logo
+    image(logo, width/2 - 105, 7, 45, 45);
 
     // Sort by arrow
     stroke(255);
