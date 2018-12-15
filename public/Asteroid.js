@@ -24,6 +24,7 @@ class Asteroid {
                         asteroid.mode = 0;
                     }
                     this.mode = 2;
+                    popup = true;
                 }
                 // else if(this.mode == 2 && !this.mouseDown){
                 //     this.mode = 0;
@@ -45,6 +46,7 @@ class Asteroid {
         if(mouseX<100 || mouseX>width-100 || mouseY<100 || mouseY > height-100){
             if(mouseIsPressed && this.mode == 2 && !this.mouseDown){
                 this.mode = 0;
+                popup = false;
             }
         }
         
@@ -59,7 +61,7 @@ class Asteroid {
 
         fill(80);
         noStroke();
-        ellipse(x, y, this.displaySize, this.displaySize);
+        image(ast, x - this.displaySize/2, y - this.displaySize/2, this.displaySize, this.displaySize);
         textAlign(CENTER, TOP);
         textSize(25);
         fill(255);
@@ -86,9 +88,9 @@ class Asteroid {
         rect(100,100,width-200,height-200);
 
         fill(0);
-        textAlign(CENTER,TOP);
+        textAlign(CENTER);
         textSize(40);
-        text("Asteroid Name",100,100,width-200,60);
+        text("Asteroid Name", width/2, 105);
 
         // textAlign(CENTER,TOP);
         // textSize(20);
