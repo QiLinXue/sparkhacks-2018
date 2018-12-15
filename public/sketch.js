@@ -302,6 +302,7 @@ function sort_name(){
             }
         }
     }
+    asteroids.reverse();
 }
 
 function sort_value(){
@@ -315,6 +316,7 @@ function sort_value(){
             }
         }
     }
+    asteroids.reverse();
 }
 
 function sort_profit(){
@@ -328,6 +330,7 @@ function sort_profit(){
             }
         }
     }
+    asteroids.reverse();
 }
 
 function sort_approach(){
@@ -342,6 +345,7 @@ function sort_approach(){
             }
         }
     }
+    asteroids.reverse();
 }
 
 function sort_price(){
@@ -356,4 +360,5 @@ function sort_price(){
             }
         }
     }
+    asteroids.reverse();
 }
