@@ -19,7 +19,7 @@ function setup(){
 
     // Create asteroids
     for (var i = 0; i < 10; i++) {
-        asteroids.push(new Asteroid("eggs" + i, round(random(1000, 10000)), round(random(1000000, 100000000))));
+        asteroids.push(new Asteroid("eggs" + i, round(random(1000, 10000))/100, round(random(1000000,100000000))/100, round(random(1, 100))/100));
     }
 
     // Create positions of asteroids
@@ -123,7 +123,7 @@ function mousePressed() {
             // }
         } else {
             sideExpanded = false;
-            reposition();
+            // reposition();
         }
     }
 }
@@ -132,7 +132,7 @@ function mouseWheel(event) {
     print(event.delta);
 
     for (var i = 0; i < asteroids.length; i++) {
-        positions[i][0] += event.delta;
+        positions[i][0] = (positions[i][0] + event.delta) % 2000;
     }
   }
   

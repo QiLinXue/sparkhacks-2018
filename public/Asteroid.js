@@ -1,8 +1,9 @@
 class Asteroid {
-    constructor(name, diameter, profit, displaySize=50) {
+    constructor(name, diameter, profit, sharePrice, displaySize=50) {
         this.name = name;
         this.diameter = diameter; // Meters
         this.profit = profit; // USD
+        this.sharePrice = sharePrice;
 
         this.displaySize = displaySize
 
@@ -59,7 +60,7 @@ class Asteroid {
         noStroke();
         text(this.name, x, y - this.displaySize - 20);
         textSize(15);
-        text("$" + this.profit, x, y + this.displaySize - 10);
+        text("$" + this.sharePrice + " per share", x, y + this.displaySize - 10);
     }
 
     popup_small(x, y) {
