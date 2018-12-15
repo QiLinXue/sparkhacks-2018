@@ -1,5 +1,5 @@
 class Asteroid {
-    constructor(name, value, profit, approach, period, minerals, risks, ac, picture, displaySize=50) {
+    constructor(name, value, profit, approach, period, minerals, risks, ac, picture, displaySize=100) {
         // Atributes
         this.name = name;
         this.value = value;
@@ -79,9 +79,9 @@ class Asteroid {
         textSize(25);
         fill(255);
         noStroke();
-        text(this.name, x, y - this.displaySize - 20);
-        textSize(15);
-        text(this.sharePrice + "¢ per share", x, y + this.displaySize - 10);
+        text(this.name, x, y - this.displaySize + 10);
+        textSize(20);
+        text(this.sharePrice + "¢ per share", x, y + this.displaySize - 30);
     }
 
     popup_small(x, y) {

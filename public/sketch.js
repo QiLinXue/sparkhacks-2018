@@ -64,6 +64,12 @@ function draw(){
     for (var i = 0; i < asteroids.length; i++) {
         asteroid = asteroids[i];
         asteroid.display(positions[i][0], positions[i][1], 50);
+
+        // Ranking number
+        textAlign(CENTER);
+        textSize(30);
+        fill(255);
+        text(i + 1 + ".", positions[i][0], positions[i][1] - 150);
     }
 
     // Draw Description Boxes
@@ -109,7 +115,7 @@ function draw(){
     if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
         cursor(HAND);
     }
-    if (!(mouseX >= 115 && mouseX <= 235 && mouseY <= titleBarSize + 300) && sortExpanded) {
+    if (!(mouseX >= 115 && mouseX <= 235 && mouseY <= titleBarSize + 200) && sortExpanded) {
         sortExpanded = false;
     }
     if (sortExpanded) {
@@ -136,6 +142,7 @@ function draw(){
                 noStroke()
                 fill(0, 0, 0, 60);
                 rect(115, titleBarSize + 40*i, 120, 40);
+                cursor(HAND);
             }
         }
     }
@@ -265,7 +272,11 @@ function mousePressed() {
     if (sortExpanded) {
         for (var i = 0; i < 5; i++) {
             if (mouseX >= 115 && mouseX <= 235 && mouseY >= titleBarSize + 40*i && mouseY < titleBarSize + 40*i + 40) {
-                
+                if(i == 0){sort_name();}
+                if(i == 1){sort_value();}
+                if(i == 2){sort_profit();}
+                if(i == 3){sort_approach();}
+                if(i == 4){sort_profit();}
             }
         }
     }
@@ -278,4 +289,69 @@ function reposition() {
     }
 }
 
+function sort_name(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].name > asteroids[j+1].name){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
 
+function sort_value(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].value > asteroids[j+1].value){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
+
+function sort_profit(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].profit > asteroids[j+1].profit){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+            }
+        }
+    }
+}
+
+function sort_approach(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].approach > asteroids[j+1].approach){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+                console.log("??");
+            }
+        }
+    }
+}
+
+function sort_price(){
+    var length = asteroids.length;
+    for(var i=0;i<length;i++){
+        for(var j=0;j<(length-i-1); j++){
+            if(asteroids[j].sharePrice > asteroids[j+1].sharePrice){
+                var temp = asteroids[j];
+                asteroids[j] = asteroids[j+1];
+                asteroids[j+1] = temp;
+                console.log("??");
+            }
+        }
+    }
+}
