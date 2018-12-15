@@ -21,7 +21,7 @@ class Asteroid {
         var shares = 100000000;
         var realValue = profit * (1-((1-risks[0]/100)*(1-risks[1]/100)*(1-risks[2]/100)*(1-risks[3]/100)));
         var distributedValue = realValue * ac * 1000000000;
-        this.sharePrice = (distributedValue/shares).toPrecision(3);
+        this.sharePrice = (distributedValue/shares);
         print(this.sharePrice);
 
     }
@@ -81,7 +81,7 @@ class Asteroid {
         noStroke();
         text(this.name, x, y - this.displaySize + 10);
         textSize(20);
-        text(this.sharePrice + "¢ per share", x, y + this.displaySize - 30);
+        text(this.sharePrice.toPrecision(3) + "¢ per share", x, y + this.displaySize - 30);
     }
 
     popup_small(x, y) {
@@ -164,9 +164,17 @@ class Asteroid {
 
         
         if(mouseX > width/2-150 && mouseX < width/2+150 && mouseY > 560 && mouseY < 660){
-            console.log("hello");
             cursor(HAND);
             fill(138,175,218);
+            if(mouseIsPressed && !this.mouseDown){
+                fill(255,175,250);
+                this.mouseDown = true;
+                this.sharePrice += 0.0005;
+                // print(typeof this.sharePrice)
+            }
+            else if(!mouseIsPressed){
+                this.mouseDown = false;
+            }
         }
         else{
             cursor(ARROW);
@@ -177,7 +185,7 @@ class Asteroid {
         textAlign(CENTER,CENTER);
         fill(0);
         textSize(30);
-        text("Trade ("+this.sharePrice+"¢/share)",width/2-150,560,300,100);
+        text("Trade ("+this.sharePrice.toPrecision(3)+"¢/share)",width/2-150,560,300,100);
     }
     
 
