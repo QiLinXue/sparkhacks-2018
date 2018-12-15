@@ -11,6 +11,12 @@ var sideBarSize = 300;
 var titleBarSize = 60;
 var spacing = 200;
 
+// Control animation and controls
+var popup = false;
+
+// Images
+var ast;
+
 function setup(){
     createCanvas(window.innerWidth, window.innerHeight);
 
@@ -28,6 +34,9 @@ function setup(){
     for (var i = 0; i < 50; i++) {
         stars.push([floor(random(0, width)), floor(random(titleBarSize, height)), floor(random(1, 4))]);
     }
+
+    // Load images
+    ast = loadImage('ast.png');
     
     print(asteroids);
     print(positions);
@@ -100,7 +109,7 @@ function draw(){
     }
 
     // Scroll arrows
-    if (mouseX <= 80) {
+    if (mouseX <= 80 && !popup) {
         noStroke();
         fill(255, 255, 255, 20);
         rect(0, 0, 80, height);
@@ -113,7 +122,7 @@ function draw(){
             positions[i][0] %= asteroids.length * spacing + 200;
         }
     }
-    if (mouseX >= width - 80 && !sideExpanded && !sideClickClosed) {
+    if (mouseX >= width - 80 && !sideExpanded && !sideClickClosed && !popup) {
         noStroke();
         fill(255, 255, 255, 20);
         rect(width - 80, 0, 80, height);
