@@ -63,7 +63,7 @@ function draw(){
     // Draw asteroids
     for (var i = 0; i < asteroids.length; i++) {
         asteroid = asteroids[i];
-        asteroid.display(positions[i][0], positions[i][1], 50);
+        asteroid.display(positions[i][0], positions[i][1]);
 
         // Ranking number
         textAlign(CENTER);

@@ -63,8 +63,6 @@ class Asteroid {
             }
         }
         
-
-
         if(this.mode == 1){
             this.popup_small(x,y);
         }
@@ -74,7 +72,14 @@ class Asteroid {
 
         fill(80);
         noStroke();
-        image(ast, x - this.displaySize/2, y - this.displaySize/2, this.displaySize, this.displaySize);
+        imageMode(CENTER, CENTER);
+        if (this.contains(x, y)) {
+            image(ast, x, y, this.displaySize + 20, this.displaySize + 20);
+        } else {
+            image(ast, x, y, this.displaySize, this.displaySize);
+        }
+        imageMode(CORNER, CORNER);
+
         textAlign(CENTER, TOP);
         textSize(25);
         fill(255);
