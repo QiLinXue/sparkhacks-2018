@@ -41,7 +41,7 @@ function setup(){
     // Load images
     ast = loadImage('ast.png');
     bg = loadImage('blue.jpg');
-    
+
     print(asteroids);
     print(positions);
 }
@@ -72,46 +72,31 @@ function draw(){
     }
 
     // Title banner
-    fill(20,48,49);
     noStroke();
+    fill(20,48,49);
     rect(0, 0, width, 60);
+    fill(100, 100, 100, 150);
+    rect(0, titleBarSize - 5, width, 5);
 
     textAlign(CENTER, CENTER);
-    textSize(60);
+    textSize(45);
     fill(255);
-    text("A X I", width/2, 35);
+    text("A X I", width/2, 32);
 
-    // Side bar on the right
+    textAlign(RIGHT);
+    textSize(20);
+    text("Logged in as " + "Ethan Wang", width - 210, 32);
+
+    textAlign(LEFT);
+    text("Sign out", width - 170, 32);
     stroke(255);
-    strokeWeight(3);
+    strokeWeight(2);
+    line(width - 170, 42, width - 95, 42)
 
-    line(width - 60, 15, width - 20, 15);
-    line(width - 60, 30, width - 20, 30);
-    line(width - 60, 45, width - 20, 45);
-
-    if (!sideExpanded) {
-        if (mouseX >= width-65 && mouseY <= 60) {
-            if (!sideClickClosed) {
-                sideExpanded = true;
-                // Reposition asteroids
-                // for (var i = 0; i < asteroids.length; i++) {
-                //     positions[i] = [((width-sideBarSize)/(asteroids.length+1) * (i+1)), height/2];
-                // }
-            }
-        } else {
-            sideClickClosed = false;
-        }
-    } else {
-        strokeWeight();
-        stroke(20, 48, 49);
-        fill(255);
-        rect(width - sideBarSize, titleBarSize, sideBarSize, height-titleBarSize);
-
-        if (mouseX < width - sideBarSize ) {
-            sideExpanded = false;
-            // reposition();
-        }
-    }
+    stroke(255);
+    textSize(25);
+    strokeWeight(0.1);
+    text("Sort by", 120, 30);
 
     // Scroll arrows
     if (mouseX <= 80 && !popup) {
@@ -141,12 +126,68 @@ function draw(){
         }
     }
 
+    // Arrows on both sides
     stroke(255);
+    strokeWeight(3);
     line(50, height/2 + 30, 30, height/2);
     line(50, height/2 - 30, 30, height/2);
 
     line(width - 50, height/2 + 30, width - 30, height/2);
     line(width - 50, height/2 - 30, width - 30, height/2);
+
+    // Side bar on the right
+    stroke(255);
+    strokeWeight(3);
+
+    line(width - 60, 15, width - 20, 15);
+    line(width - 60, 30, width - 20, 30);
+    line(width - 60, 45, width - 20, 45);
+
+    if (!sideExpanded) {
+        if (mouseX >= width-65 && mouseY <= 60) {
+            if (!sideClickClosed) {
+                sideExpanded = true;
+                // Reposition asteroids
+                // for (var i = 0; i < asteroids.length; i++) {
+                //     positions[i] = [((width-sideBarSize)/(asteroids.length+1) * (i+1)), height/2];
+                // }
+            }
+        } else {
+            sideClickClosed = false;
+        }
+    } else {
+        strokeWeight();
+        stroke(20, 48, 49);
+        fill(200);
+        rect(width - sideBarSize, titleBarSize, sideBarSize, height-titleBarSize);
+        fill(140);
+        rect(width - sideBarSize, titleBarSize, 10, height-titleBarSize);
+
+        // Subheadings
+        textAlign(LEFT, TOP);
+        textSize(20);
+        fill(0);
+        textLeading(50);
+        text("My account\nPortfolio\nHoldings\nOrder Status\nTransaction History\nAlerts\nOur Partners\nAbout Us\nContact Us", width - sideBarSize + 20, titleBarSize + 15);
+
+        // Lines
+        for (var i = 0; i < 9; i++) {
+            stroke(100);
+            strokeWeight(1);
+            line(width - sideBarSize + 10, titleBarSize + 50*(i+1), width, titleBarSize + 50*(i+1));
+
+            // Arrows
+            stroke(20, 48, 49);
+            strokeWeight(3);
+            line(width - 15, titleBarSize + 20 + 50*i, width - 10, titleBarSize + 25 + 50*i);
+            line(width - 15, titleBarSize + 30 + 50*i, width - 10, titleBarSize + 25 + 50*i);
+        }
+
+        if (mouseX < width - sideBarSize ) {
+            sideExpanded = false;
+            // reposition();
+        }
+    }
 }
 
 function mousePressed() {
