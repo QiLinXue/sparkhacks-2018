@@ -1,18 +1,27 @@
 class Asteroid {
-    constructor(name, value, profit, approach, period, minerals, risks, sharePrice, displaySize=50) {
+    constructor(name, value, profit, approach, period, minerals, risks, ac, displaySize=50) {
+        // Atributes
         this.name = name;
         this.value = value;
         this.profit = profit;
         this.approach = approach;
         this.minerals = minerals;
         this.risks = risks;
-
-        this.sharePrice = sharePrice;
+        this.ac = ac;
         this.displaySize = displaySize
 
+        // Utilities
         this.mode = 0;
-
         this.mouseDown = false;
+
+        // Calculation
+        // print(risks);
+        var shares = 100000000;
+        var realValue = profit * (1-((1-risks[0]/100)*(1-risks[1]/100)*(1-risks[2]/100)*(1-risks[3]/100)));
+        var distributedValue = realValue * ac * 1000000000;
+        this.sharePrice = (distributedValue/shares).toPrecision(3);
+        print(this.sharePrice);
+
     }
 
     display(x, y) {
@@ -71,7 +80,7 @@ class Asteroid {
         noStroke();
         text(this.name, x, y - this.displaySize - 20);
         textSize(15);
-        text("$" + this.sharePrice + " per share", x, y + this.displaySize - 10);
+        text(this.sharePrice + "¢ per share", x, y + this.displaySize - 10);
     }
 
     popup_small(x, y) {
@@ -165,10 +174,3 @@ class Asteroid {
     //     return True;
     // }
 }
-
-// function mousePressed() {
-//     for (var i = 0; i < asteroids.length; i++) {
-//         asteroid = asteroids[i];
-//         asteroid.mousePressed();
-//     }
-// }
