@@ -113,11 +113,35 @@ function draw(){
         sortExpanded = false;
     }
     if (sortExpanded) {
-        noStroke()
+        strokeWeight(2);
+        stroke(80);
         fill(200);
-        rect(115, titleBarSize, 120, 300)
-        print("Eqwe");
+        rect(115, titleBarSize, 120, 200);
+        
+        // Labels
+        textAlign(LEFT, TOP);
+        textSize(20);
+        fill(0);
+        textLeading(40);
+        strokeWeight(0.5);
+        text("Name\nValue\nProfit\nApproach\nShare Price", 120, titleBarSize + 10);
+
+        for (var i = 0; i < 5; i++) {
+            strokeWeight(2);
+            stroke(100);
+            line(115, titleBarSize + 40*i, 235, titleBarSize + 40*i);
+        }
+        for (var i = 0; i < 5; i++) {
+            if (mouseX >= 115 && mouseX <= 235 && mouseY >= titleBarSize + 40*i && mouseY < titleBarSize + 40*i + 40) {
+                noStroke()
+                fill(0, 0, 0, 60);
+                rect(115, titleBarSize + 40*i, 120, 40);
+            }
+        }
     }
+    noStroke();
+    fill(100, 100, 100, 150);
+    rect(0, titleBarSize - 5, width, 5);
 
     // Scroll arrows
     if (mouseX <= 80 && !popup) {
@@ -236,6 +260,14 @@ function mousePressed() {
     // Sort
     if (mouseX >= 115 && mouseX <= 235 && mouseY >= 10 && mouseY <= 50) {
         sortExpanded = !sortExpanded;
+    }
+
+    if (sortExpanded) {
+        for (var i = 0; i < 5; i++) {
+            if (mouseX >= 115 && mouseX <= 235 && mouseY >= titleBarSize + 40*i && mouseY < titleBarSize + 40*i + 40) {
+                
+            }
+        }
     }
 }
 
